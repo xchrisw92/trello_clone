@@ -1,0 +1,4 @@
+[git-together]
+	domain = welton.com
+[git-together "authors"]
+	cw = "Chris Welton; cwelton"
