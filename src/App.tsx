@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
+import ItemContainer from "./components/ItemContainer";
 
 const App = () => {
-  return (
-    <div className="App">
+const [items, setItems] = useState<Array<String>>([]);
 
+  return (
+    <div>
+      <ItemContainer items = {items} setItems={setItems} />
     </div>
   );
 }
