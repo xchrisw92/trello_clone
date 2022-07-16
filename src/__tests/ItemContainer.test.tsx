@@ -1,22 +1,22 @@
-import ItemContainer from "../components/ItemContainer";
 import {fireEvent, render, screen} from '@testing-library/react';
 import React from "react";
+import ItemContainer from "../components/ItemContainer";
 
 describe('Current Iteration', ()=>{
 
   const setItems = jest.fn();
   const initialItemList = ['Go poop', 'Go pee', 'eat lunch'];
+  const defaultTitle = 'Current Iteration';
 
-
-  const renderCurrentIteration = (items?: Array<String>) =>{
+  const renderItemContainer = (title: String, items?: Array<String>) =>{
     render(
-      <ItemContainer items={items} setItems={setItems} />
+      <ItemContainer title={title} items={items} handleAddCard={setItems} />
     )
   };
 
   it('should display the correct title', ()=>{
     // arrange
-    renderCurrentIteration();
+    renderItemContainer(defaultTitle);
     // act
 
     // assert
@@ -25,14 +25,14 @@ describe('Current Iteration', ()=>{
 
   it('should display items in the current iteration', () =>{
     // arrange
-    renderCurrentIteration(initialItemList);
+    renderItemContainer(defaultTitle, initialItemList);
     // assert
     expect(screen.getByText(/eat lunch/i)).toBeInTheDocument();
   });
 
   it('should display a button to add another item', ()=>{
     // arrange
-    renderCurrentIteration();
+    renderItemContainer(defaultTitle);
     // act
 
     // assert
@@ -40,7 +40,7 @@ describe('Current Iteration', ()=>{
   });
   it('should allow input of a new card', async ()=>{
     // arrange
-    renderCurrentIteration();
+    renderItemContainer(defaultTitle);
     const addCard = screen.getByRole('button', {name: '+ Add Another Card'});
     // act
     fireEvent.click(addCard);
@@ -51,13 +51,13 @@ describe('Current Iteration', ()=>{
   it('should add a new card', async () =>{
     // arrange
     const items: Array<String> = ['go poo'];
-    renderCurrentIteration(items);
+    renderItemContainer(defaultTitle, items);
     const addCard = screen.getByRole('button', {name: '+ Add Another Card'});
     const newCardTitle = 'Go pee';
 
     // act
     fireEvent.click(addCard);
-    const inputCardText = screen.getByLabelText('Add Card');
+    const inputCardText = screen.getByLabelText('Add New Card');
     fireEvent.change(inputCardText,{target: {value: newCardTitle}});
     expect(screen.getByDisplayValue(newCardTitle)).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', {name: 'Add'}));
