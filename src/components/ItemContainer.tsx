@@ -1,6 +1,7 @@
-import {Button, Grid, Paper, Typography} from "@mui/material";
+import {Button, Grid, IconButton, Paper, Typography} from "@mui/material";
 import AddNewCard from "./AddNewCard";
 import React, {useState} from "react";
+import {Clear} from "@mui/icons-material";
 
 interface ItemContainerProps {
   title: String,
@@ -9,10 +10,14 @@ interface ItemContainerProps {
 
 }
 
-const ItemContainer: React.FC<ItemContainerProps> = ({title, items, handleAddCard}: ItemContainerProps): JSX.Element =>{
+const ItemContainer: React.FC<ItemContainerProps> = ({
+                                                       title,
+                                                       items,
+                                                       handleAddCard
+                                                     }: ItemContainerProps): JSX.Element => {
   const [addCard, setAddCard] = useState(false);
 
-  const handleAddNewCard = (item: String) =>{
+  const handleAddNewCard = (item: String) => {
     handleAddCard(title, item);
     setAddCard(false);
   }
@@ -35,7 +40,12 @@ const ItemContainer: React.FC<ItemContainerProps> = ({title, items, handleAddCar
         {
           addCard && <AddNewCard handleAddCard={handleAddNewCard}/>
         }
-        <Button onClick={() => setAddCard(!addCard)}>+ Add Another Card</Button>
+        <Grid container justifyContent={'space-between'} sx={{paddingLeft: 2}}>
+          <Button variant={'contained'} size={'small'} onClick={() => setAddCard(!addCard)}>+ Add Another Card</Button>
+          <IconButton>
+            <Clear />
+          </IconButton>
+        </Grid>
       </Grid>
     </Paper>
   );

@@ -27,7 +27,7 @@ describe('Current Iteration', ()=>{
     // arrange
     renderItemContainer(defaultTitle, initialItemList);
     // assert
-    expect(screen.getByText(/eat lunch/i)).toBeInTheDocument();
+    expect(screen.getByText('eat lunch')).toBeInTheDocument();
   });
 
   it('should display a button to add another item', ()=>{
@@ -38,6 +38,7 @@ describe('Current Iteration', ()=>{
     // assert
     expect(screen.getByRole('button', {name: '+ Add Another Card'})).toBeInTheDocument();
   });
+
   it('should allow input of a new card', async ()=>{
     // arrange
     renderItemContainer(defaultTitle);
@@ -45,7 +46,7 @@ describe('Current Iteration', ()=>{
     // act
     fireEvent.click(addCard);
     // assert
-    await expect(screen.findByRole('input', {name: 'Add New Card'}));
+    await expect(screen.getByLabelText('Add New Card')).toBeInTheDocument();
   });
 
   it('should add a new card', async () =>{
@@ -65,5 +66,5 @@ describe('Current Iteration', ()=>{
     // assert
     expect(setItems).toHaveBeenCalled();
     expect(screen.queryByText(/Add New Card/i)).toBeNull();
-  })
+  });
 })
