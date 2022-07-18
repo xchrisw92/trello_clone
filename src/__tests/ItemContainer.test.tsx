@@ -67,4 +67,14 @@ describe('Current Iteration', ()=>{
     expect(setItems).toHaveBeenCalled();
     expect(screen.queryByText(/Add New Card/i)).toBeNull();
   });
+
+  it('should close out of Add New Card when X is clicked', () =>{
+    // arrange
+    renderItemContainer(defaultTitle);
+    // act
+    fireEvent.click(screen.getByRole('button', {name: '+ Add Another Card'}));
+    fireEvent.click(screen.getByRole('button', {name: 'close'}));
+    // assert
+    expect(screen.queryByLabelText('Add New Card')).not.toBeInTheDocument();
+  });
 })

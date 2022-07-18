@@ -13,7 +13,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({handleAddCard}: AddNewCardProps)
   }
 
   return (
-      <Grid container>
+      <Grid container sx={{paddingBottom: 2, paddingLeft: 2}}>
           <Grid item md={8}>
               <TextField
                   label={'Add New Card'}

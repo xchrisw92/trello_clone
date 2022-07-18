@@ -42,9 +42,11 @@ const ItemContainer: React.FC<ItemContainerProps> = ({
         }
         <Grid container justifyContent={'space-between'} sx={{paddingLeft: 2}}>
           <Button variant={'contained'} size={'small'} onClick={() => setAddCard(!addCard)}>+ Add Another Card</Button>
-          <IconButton>
-            <Clear />
-          </IconButton>
+          {addCard &&
+              <IconButton aria-label={'close'} onClick={() => {setAddCard(false)}}>
+                  <Clear/>
+              </IconButton>
+          }
         </Grid>
       </Grid>
     </Paper>
