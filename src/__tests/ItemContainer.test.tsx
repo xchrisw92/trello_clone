@@ -36,13 +36,13 @@ describe('Current Iteration', ()=>{
     // act
 
     // assert
-    expect(screen.getByRole('button', {name: '+ Add Another Card'})).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: '+ Add a card'})).toBeInTheDocument();
   });
 
   it('should allow input of a new card', async ()=>{
     // arrange
     renderItemContainer(defaultTitle);
-    const addCard = screen.getByRole('button', {name: '+ Add Another Card'});
+    const addCard = screen.getByRole('button', {name: '+ Add a card'});
     // act
     fireEvent.click(addCard);
     // assert
@@ -53,7 +53,7 @@ describe('Current Iteration', ()=>{
     // arrange
     const items: Array<String> = ['go poo'];
     renderItemContainer(defaultTitle, items);
-    const addCard = screen.getByRole('button', {name: '+ Add Another Card'});
+    const addCard = screen.getByRole('button', {name: '+ Add a card'});
     const newCardTitle = 'Go pee';
 
     // act
@@ -72,7 +72,7 @@ describe('Current Iteration', ()=>{
     // arrange
     renderItemContainer(defaultTitle);
     // act
-    fireEvent.click(screen.getByRole('button', {name: '+ Add Another Card'}));
+    fireEvent.click(screen.getByRole('button', {name: '+ Add a card'}));
     fireEvent.click(screen.getByRole('button', {name: 'close'}));
     // assert
     expect(screen.queryByLabelText('Add New Card')).not.toBeInTheDocument();

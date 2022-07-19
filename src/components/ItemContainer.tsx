@@ -2,6 +2,7 @@ import {Button, Grid, IconButton, Paper, Typography} from "@mui/material";
 import AddNewCard from "./AddNewCard";
 import React, {useState} from "react";
 import {Clear} from "@mui/icons-material";
+import Item from "./Item";
 
 interface ItemContainerProps {
   title: String,
@@ -37,11 +38,12 @@ const ItemContainer: React.FC<ItemContainerProps> = ({
             )
           })
         }
+        <Item/>
         {
           addCard && <AddNewCard handleAddCard={handleAddNewCard}/>
         }
-        <Grid container justifyContent={'space-between'} sx={{paddingLeft: 2}}>
-          <Button variant={'contained'} size={'small'} onClick={() => setAddCard(!addCard)}>+ Add Another Card</Button>
+        <Grid container justifyContent={'space-between'}>
+          <Button variant={'text'}  onClick={()=> setAddCard(!addCard)}>+ Add a card</Button>
           {addCard &&
               <IconButton aria-label={'close'} onClick={() => {setAddCard(false)}}>
                   <Clear/>
