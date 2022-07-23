@@ -5,12 +5,14 @@ import ItemContainer from "../components/ItemContainer";
 describe('Current Iteration', ()=>{
 
   const setItems = jest.fn();
+  const mockDeleteCard = jest.fn();
+  const mockHandleMoveCard = jest.fn();
   const initialItemList = ['Go poop', 'Go pee', 'eat lunch'];
   const defaultTitle = 'Current Iteration';
 
-  const renderItemContainer = (title: String, items?: Array<String>) =>{
+  const renderItemContainer = (title: string, items?: Array<string>) =>{
     render(
-      <ItemContainer title={title} items={items} handleAddCard={setItems} />
+      <ItemContainer title={title} items={items} handleAddCard={setItems} handleDeleteCard={mockDeleteCard} handleMoveCard={mockHandleMoveCard}/>
     )
   };
 
@@ -51,7 +53,7 @@ describe('Current Iteration', ()=>{
 
   it('should add a new card', async () =>{
     // arrange
-    const items: Array<String> = ['go poo'];
+    const items: Array<string> = ['go poo'];
     renderItemContainer(defaultTitle, items);
     const addCard = screen.getByRole('button', {name: '+ Add a card'});
     const newCardTitle = 'Go pee';
