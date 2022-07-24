@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  database:
+    container_name: trello_clone_dev_db
+    image: 'postgres:latest'
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: trello_clone_database
